@@ -13,7 +13,7 @@ function ShoppingApp() {
     <BrowserRouter>
       <div className="shopping-app">
         <header>
-          Shopping App
+          <h1>Shopping Thing</h1>
         </header>
         <Navbar />
       </div>
