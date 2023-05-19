@@ -1,14 +1,28 @@
 import "./Shopping_App.css";
 
-import { BrowserRouter, Route } from "react-router-dom";
+import React from "react";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Products from "./pages/Products";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function ShoppingApp() {
   return (
-    <div className="shopping-app">
-      <header>
-        Shopping App
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="shopping-app">
+        <header>
+          Shopping App
+        </header>
+        <Navbar />
+      </div>
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
