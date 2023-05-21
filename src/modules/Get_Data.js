@@ -5,18 +5,18 @@ const getData = (function() {
         return  data;
     }
     
-    function getAllProducts() {
+    function getAllProductsData() {
         const data = fetch("https://fakestoreapi.com/products").then(response=>response.json());
         return data;    
     }
 
     return {
         getProductData,
-        getAllProducts
+        getAllProductsData
     };
 
 })();
 
-const { getProductData, getAllProducts } = getData;
+const { getProductData, getAllProductsData } = getData;
 
-export { getProductData, getAllProducts };
+export { getProductData, getAllProductsData };
