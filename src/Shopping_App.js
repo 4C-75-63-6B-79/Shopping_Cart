@@ -26,13 +26,27 @@ function ShoppingApp() {
     return "";
   }
 
+  function onHomePageLinkClicked() {
+    if(allProductsData !== "") {
+      setHomePageProductData(() => allProductsData[getRandomNumberInRange()]);
+    }
+  }
+
+  function onProductsPageLinkClicked() {
+    console.log("products page link clicked");
+  }
+
+  function onCartPageLinkClicked() {
+    console.log("cart page link clicked");
+  }
+
   return (
     <BrowserRouter>
       <div className="shopping-app">
         <header>
           <h1>Shopping Thing</h1>
         </header>
-        <Navbar />
+        <Navbar onHomePageLinkClickedHandler={onHomePageLinkClicked}/>
       </div>
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
