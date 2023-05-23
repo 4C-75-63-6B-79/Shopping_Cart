@@ -50,7 +50,7 @@ function ShoppingApp() {
       </div>
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={<Products productsData = {allProductsData}/>} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
