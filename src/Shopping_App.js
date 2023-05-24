@@ -46,10 +46,9 @@ function ShoppingApp() {
       ...productsInCart,
       [product.title]: {
         ...product,
-        "quantity" : product.quantity ? product.quantity + 1 : 1,
+        "quantity" : productsInCart[product.title] && Object.prototype.hasOwnProperty.call(productsInCart[product.title], "quantity") ? productsInCart[product.title].quantity + 1 : 1,
       } 
     });
-    console.log(productsInCart);
   }
 
   return (
