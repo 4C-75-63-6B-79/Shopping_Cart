@@ -15,7 +15,8 @@ function ShoppingApp() {
 
   const [homePageProductData, setHomePageProductData] = useState(initalInitOfHomePageProductData);
   const [allProductsData, setAllProductsData] = useState(initProductsData);
-
+  const [productsInCart, setProductsInCart] = useState({});
+ 
   function initalInitOfHomePageProductData() {
     getProductData(getRandomNumberInRange()).then((data) => setHomePageProductData(data));
     return "";
@@ -40,6 +41,17 @@ function ShoppingApp() {
     console.log("cart page link clicked");
   }
 
+  function addToCartButtonClickHandler(product) {
+    setProductsInCart({
+      ...productsInCart,
+      [product.title]: {
+        ...product,
+        "quantity" : product.quantity ? product.quantity + 1 : 1,
+      } 
+    });
+    console.log(productsInCart);
+  }
+
   return (
     <BrowserRouter>
       <div className="shopping-app">
@@ -50,7 +62,7 @@ function ShoppingApp() {
       </div>
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
-        <Route path="/products" element={<Products productsData = {allProductsData}/>} />
+        <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} productsData = {allProductsData}/>} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
