@@ -43,7 +43,7 @@ function ShoppingApp() {
   }
 
   function addToCartButtonClickHandler(product) {
-    setNumberOfProductsInCart((numberOfProductsInCart) => numberOfProductsInCart + 1);
+    setNumberOfProductsInCart(() => numberOfProductsInCart + 1);
     setProductsInCart(() => {
       return {
         ...productsInCart,
@@ -61,7 +61,7 @@ function ShoppingApp() {
         <header>
           <h1>Shopping Thing</h1>
         </header>
-        <Navbar onHomePageLinkClickedHandler={onHomePageLinkClicked}/>
+        <Navbar onHomePageLinkClickedHandler={onHomePageLinkClicked} numberOfProductsInCart={numberOfProductsInCart}/>
       </div>
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
