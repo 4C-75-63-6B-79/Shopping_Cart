@@ -16,6 +16,7 @@ function ShoppingApp() {
   const [homePageProductData, setHomePageProductData] = useState(initalInitOfHomePageProductData);
   const [allProductsData, setAllProductsData] = useState(initProductsData);
   const [productsInCart, setProductsInCart] = useState({});
+  const [numberOfProductsInCart, setNumberOfProductsInCart] = useState(0);
  
   function initalInitOfHomePageProductData() {
     getProductData(getRandomNumberInRange()).then((data) => setHomePageProductData(data));
@@ -42,12 +43,15 @@ function ShoppingApp() {
   }
 
   function addToCartButtonClickHandler(product) {
-    setProductsInCart({
-      ...productsInCart,
-      [product.title]: {
-        ...product,
-        "quantity" : productsInCart[product.title] && Object.prototype.hasOwnProperty.call(productsInCart[product.title], "quantity") ? productsInCart[product.title].quantity + 1 : 1,
-      } 
+    setNumberOfProductsInCart((numberOfProductsInCart) => numberOfProductsInCart + 1);
+    setProductsInCart(() => {
+      return {
+        ...productsInCart,
+        [product.title]: {
+          ...product,
+          "quantity" : productsInCart[product.title] && Object.prototype.hasOwnProperty.call(productsInCart[product.title], "quantity") ? productsInCart[product.title].quantity + 1 : 1,
+        } 
+      };
     });
   }
 
