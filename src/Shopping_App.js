@@ -19,12 +19,12 @@ function ShoppingApp() {
   const [numberOfProductsInCart, setNumberOfProductsInCart] = useState(0);
  
   function initalInitOfHomePageProductData() {
-    getProductData(getRandomNumberInRange()).then((data) => setHomePageProductData(data));
+    getProductData(getRandomNumberInRange()).then((data) => setHomePageProductData(data)).catch((error) => setHomePageProductData({ error: "Something went wrong try refreshing the page again." }));
     return "";
   }
 
   function initProductsData() {
-    getAllProductsData().then((data) => setAllProductsData(data));
+    getAllProductsData().then((data) => setAllProductsData(data)).catch((error) =>setAllProductsData({ error: "Something went wrong try refreshing the page again." }));
     return "";
   }
 
