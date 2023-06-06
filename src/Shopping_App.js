@@ -43,7 +43,7 @@ function ShoppingApp() {
   }
 
   function addToCartButtonClickHandler(product) {
-    setNumberOfProductsInCart(() => numberOfProductsInCart + 1);
+    updateNumberOfItemsInCart(product);
     setProductsInCart(() => {
       return {
         ...productsInCart,
@@ -53,7 +53,17 @@ function ShoppingApp() {
         } 
       };
     });
-    console.log(productsInCart);
+  }
+
+  function updateNumberOfItemsInCart(product) {
+    const updateProductsInCart = {
+      ...productsInCart,
+      [product.title]: {
+        ...product,
+        "quantity" : product.quantity,
+      } 
+    };
+    setNumberOfProductsInCart(() => Object.keys(updateProductsInCart).reduce((accumulator, currentItem) => accumulator + Number(updateProductsInCart[currentItem].quantity), 0));
   }
 
   return (
