@@ -1,13 +1,11 @@
 import React from "react";
 
-function ProductInCartCard ({ productInfo }) {
+export default function ProductInCartCard ({ productInfo }) {
 
     return (
-        <div key={productInfo.id + productInfo.title} className="cartProductCart">
+        <div className="cartProductCard">
             <h3>{productInfo.title}</h3>
             <p>Quantity: {productInfo.quantity}</p>
         </div>
     );
 }
-
-export default ProductInCartCard;
