@@ -52,17 +52,16 @@ function ShoppingApp() {
   }
 
   function addToCartButtonClickHandler(product) {
-    updateNumberOfItemsInCart(product);
-    setAllProductsData(() => {
-      return {
-        ...allProductsData, 
-        [product.title]: {
-          ...product,
-          "inCart": true,
-          "quantity": product.quantity
-        }
-      };
-    });
+    const updatedAllProductData = {
+      ...allProductsData,
+      [product.title]: {
+        ...product,
+        "inCart": true,
+        "quantity": product.quantity
+      }
+    }; 
+    updateNumberOfItemsInCart(updatedAllProductData);
+    setAllProductsData(updatedAllProductData);
     setProductsInCart(() => {
       return {
         ...productsInCart,
@@ -74,23 +73,10 @@ function ShoppingApp() {
     });
   }
 
-  function updateNumberOfItemsInCart(product) {
-    const updateProductsInCart = {
-      ...productsInCart,
-      [product.title]: {
-        ...product,
-        "quantity" : product.quantity,
-      } 
-    };
-    const updatedAllProductData = {
-      ...allProductsData,
-      [product.title]: {
-        ...product,
-        "inCart": true,
-        "quantity": product.quantity
-      }
-    };
-    setNumberOfProductsInCart(() => Object.keys(updateProductsInCart).reduce((accumulator, currentItem) => accumulator + Number(updateProductsInCart[currentItem].quantity), 0));
+  function updateNumberOfItemsInCart(updatedAllProductData) {
+    setNumberOfProductsInCart(() => {
+      return Object.entries(updatedAllProductData).reduce((accumulator, [title, productInfo]) => Number(productInfo["quantity"]) + accumulator , 0);
+    });
   }
 
   function deleteFromCartButtonClickHandler(product) {
