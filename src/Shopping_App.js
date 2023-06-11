@@ -67,7 +67,11 @@ function ShoppingApp() {
   }
 
   function deleteFromCartButtonClickHandler(product) {
-    console.log(product);
+    const updatedProductsInCart = productsInCart;
+    const quantityOfProduct = product.quantity;
+    delete updatedProductsInCart[product.title];
+    setProductsInCart(updatedProductsInCart);
+    setNumberOfProductsInCart(() => numberOfProductsInCart - quantityOfProduct);
   }
 
   return (
