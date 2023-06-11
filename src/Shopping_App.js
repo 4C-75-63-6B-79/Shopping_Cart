@@ -34,7 +34,7 @@ function ShoppingApp() {
       });
       setAllProductsData(preProcessedData);
     }).catch((error) =>setAllProductsData({ error: "Something went wrong try refreshing the page again." }));
-    return "";
+    return {};
   }
 
   function onHomePageLinkClicked() {
@@ -108,7 +108,7 @@ function ShoppingApp() {
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
         <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} productsData = {allProductsData}/>} />
-        <Route path="/cart" element={<Cart deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} productsInCart={productsInCart}/>} />
+        <Route path="/cart" element={<Cart deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} allProductsData={allProductsData}/>} />
       </Routes>
     </BrowserRouter>
   );
