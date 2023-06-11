@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function ProductCard({ productInfo, addToCartButtonClickHandler }) {
 
-    const[quantity, setQuantity] = useState(1);
+    const[quantity, setQuantity] = useState(productInfo.quantity || 1);
 
     function addToCartClicked(event) {
         addToCartButtonClickHandler({ ...productInfo, quantity: quantity });
