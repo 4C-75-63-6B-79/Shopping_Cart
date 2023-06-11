@@ -54,12 +54,13 @@ function ShoppingApp() {
   function addToCartButtonClickHandler(product) {
     const updatedAllProductData = {
       ...allProductsData,
-      [product.title]: {
+      [product.id]: {
         ...product,
         "inCart": true,
         "quantity": product.quantity
       }
     }; 
+    console.log(updatedAllProductData);
     updateNumberOfItemsInCart(updatedAllProductData);
     setAllProductsData(updatedAllProductData);
     setProductsInCart(() => {
@@ -75,7 +76,7 @@ function ShoppingApp() {
 
   function updateNumberOfItemsInCart(updatedAllProductData) {
     setNumberOfProductsInCart(() => {
-      return Object.entries(updatedAllProductData).reduce((accumulator, [title, productInfo]) => Number(productInfo["quantity"]) + accumulator , 0);
+      return Object.entries(updatedAllProductData).reduce((accumulator, [id, productInfo]) => Number(productInfo["quantity"]) + accumulator , 0);
     });
   }
 
@@ -83,7 +84,7 @@ function ShoppingApp() {
     const updatedProductsInCart = productsInCart;
     const updatedAllProductData = {
       ...allProductsData,
-      [product.title]: {
+      [product.id]: {
         ...product,
         "inCart": false,
         "quantity": 0
