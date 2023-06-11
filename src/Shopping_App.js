@@ -107,7 +107,7 @@ function ShoppingApp() {
       </div>
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
-        <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} productsData = {allProductsData}/>} />
+        <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} allProductsData = {allProductsData}/>} />
         <Route path="/cart" element={<Cart deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} allProductsData={allProductsData}/>} />
       </Routes>
     </BrowserRouter>
