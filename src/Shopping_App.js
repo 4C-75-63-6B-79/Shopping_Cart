@@ -60,7 +60,6 @@ function ShoppingApp() {
         "quantity": product.quantity
       }
     }; 
-    console.log(updatedAllProductData);
     updateNumberOfItemsInCart(updatedAllProductData);
     setAllProductsData(updatedAllProductData);
     setProductsInCart(() => {
