@@ -10,7 +10,7 @@ const Products = ({ productsData, addToCartButtonClickHandler }) => {
             <div id="productGrid">
                 {
                     productsData.error ? <h3>{productsData.error}</h3> :
-                    Array.from(productsData).map((product) => {
+                    Object.entries(productsData).map(([index, product]) => {
                         return <ProductCard key={`${product.title}${product.id}`} productInfo={product} addToCartButtonClickHandler={addToCartButtonClickHandler}/>;
                     })
                 }
