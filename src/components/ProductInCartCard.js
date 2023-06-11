@@ -6,6 +6,7 @@ export default function ProductInCartCard ({ productInfo }) {
         <div className="cartProductCard">
             <h3>{productInfo.title}</h3>
             <p>Quantity: {productInfo.quantity}</p>
+            <button type="button">Delete</button>
         </div>
     );
 }
