@@ -66,6 +66,10 @@ function ShoppingApp() {
     setNumberOfProductsInCart(() => Object.keys(updateProductsInCart).reduce((accumulator, currentItem) => accumulator + Number(updateProductsInCart[currentItem].quantity), 0));
   }
 
+  function deleteFromCartButtonClickHandler() {
+    console.log("delete button pressed");
+  }
+
   return (
     <BrowserRouter>
       <div className="shopping-app">
@@ -77,7 +81,7 @@ function ShoppingApp() {
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
         <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} productsData = {allProductsData}/>} />
-        <Route path="/cart" element={<Cart productsInCart={productsInCart}/>} />
+        <Route path="/cart" element={<Cart deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} productsInCart={productsInCart}/>} />
       </Routes>
     </BrowserRouter>
   );
