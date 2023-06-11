@@ -2,15 +2,15 @@ import React from "react";
 
 import ProductCard from "../components/ProductCard";
 
-const Products = ({ productsData, addToCartButtonClickHandler }) => {
+const Products = ({ allProductsData, addToCartButtonClickHandler }) => {
 
     return (
         <>
             <h2>Products</h2>
             <div id="productGrid">
                 {
-                    productsData.error ? <h3>{productsData.error}</h3> :
-                    Object.entries(productsData).map(([index, product]) => {
+                    allProductsData.error ? <h3>{allProductsData.error}</h3> :
+                    Object.entries(allProductsData).map(([index, product]) => {
                         return <ProductCard key={`${product.title}${product.id}`} productInfo={product} addToCartButtonClickHandler={addToCartButtonClickHandler}/>;
                     })
                 }
