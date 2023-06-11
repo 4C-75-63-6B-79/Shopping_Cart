@@ -53,6 +53,16 @@ function ShoppingApp() {
 
   function addToCartButtonClickHandler(product) {
     updateNumberOfItemsInCart(product);
+    setAllProductsData(() => {
+      return {
+        ...allProductsData, 
+        [product.title]: {
+          ...product,
+          "inCart": true,
+          "quantity": product.quantity
+        }
+      };
+    });
     setProductsInCart(() => {
       return {
         ...productsInCart,
