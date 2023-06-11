@@ -66,8 +66,8 @@ function ShoppingApp() {
     setNumberOfProductsInCart(() => Object.keys(updateProductsInCart).reduce((accumulator, currentItem) => accumulator + Number(updateProductsInCart[currentItem].quantity), 0));
   }
 
-  function deleteFromCartButtonClickHandler() {
-    console.log("delete button pressed");
+  function deleteFromCartButtonClickHandler(event, deleteFromCartProductInfo) {
+    console.log(deleteFromCartProductInfo);
   }
 
   return (
