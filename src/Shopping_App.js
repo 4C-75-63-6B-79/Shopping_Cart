@@ -24,7 +24,16 @@ function ShoppingApp() {
   }
 
   function initProductsData() {
-    getAllProductsData().then((data) => setAllProductsData(data)).catch((error) =>setAllProductsData({ error: "Something went wrong try refreshing the page again." }));
+    getAllProductsData().then((data) => {
+      const preProcessedData = data.map((element) => {
+        return {
+          ...element,
+          "inCart": false,
+          "quantity": 0
+        };
+      });
+      setAllProductsData(preProcessedData);
+    }).catch((error) =>setAllProductsData({ error: "Something went wrong try refreshing the page again." }));
     return "";
   }
 
