@@ -82,14 +82,31 @@ function ShoppingApp() {
         "quantity" : product.quantity,
       } 
     };
+    const updatedAllProductData = {
+      ...allProductsData,
+      [product.title]: {
+        ...product,
+        "inCart": true,
+        "quantity": product.quantity
+      }
+    };
     setNumberOfProductsInCart(() => Object.keys(updateProductsInCart).reduce((accumulator, currentItem) => accumulator + Number(updateProductsInCart[currentItem].quantity), 0));
   }
 
   function deleteFromCartButtonClickHandler(product) {
     const updatedProductsInCart = productsInCart;
+    const updatedAllProductData = {
+      ...allProductsData,
+      [product.title]: {
+        ...product,
+        "inCart": false,
+        "quantity": 0
+      }
+    };
     const quantityOfProduct = product.quantity;
     delete updatedProductsInCart[product.title];
     setProductsInCart(updatedProductsInCart);
+    setAllProductsData(updatedAllProductData);
     setNumberOfProductsInCart(() => numberOfProductsInCart - quantityOfProduct);
   }
 
