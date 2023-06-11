@@ -77,7 +77,7 @@ function ShoppingApp() {
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
         <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} productsData = {allProductsData}/>} />
-        <Route path="/cart" element={<Cart />} cartItems = {productsInCart}/>
+        <Route path="/cart" element={<Cart productsInCart={productsInCart}/>} />
       </Routes>
     </BrowserRouter>
   );
