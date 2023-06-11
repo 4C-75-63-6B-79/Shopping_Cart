@@ -54,7 +54,7 @@ function ShoppingApp() {
   function addToCartButtonClickHandler(product) {
     const updatedAllProductData = {
       ...allProductsData,
-      [product.id]: {
+      [product.id-1]: {
         ...product,
         "inCart": true,
         "quantity": product.quantity
@@ -84,7 +84,7 @@ function ShoppingApp() {
     const updatedProductsInCart = productsInCart;
     const updatedAllProductData = {
       ...allProductsData,
-      [product.id]: {
+      [product.id-1]: {
         ...product,
         "inCart": false,
         "quantity": 0
