@@ -15,7 +15,6 @@ function ShoppingApp() {
 
   const [homePageProductData, setHomePageProductData] = useState(initalInitOfHomePageProductData);
   const [allProductsData, setAllProductsData] = useState(initProductsData);
-  const [productsInCart, setProductsInCart] = useState({});
   const [numberOfProductsInCart, setNumberOfProductsInCart] = useState(0);
  
   function initalInitOfHomePageProductData() {
@@ -62,15 +61,6 @@ function ShoppingApp() {
     }; 
     updateNumberOfItemsInCart(updatedAllProductData);
     setAllProductsData(updatedAllProductData);
-    setProductsInCart(() => {
-      return {
-        ...productsInCart,
-        [product.title]: {
-          ...product,
-          "quantity" : product.quantity,
-        } 
-      };
-    });
   }
 
   function updateNumberOfItemsInCart(updatedAllProductData) {
@@ -80,7 +70,6 @@ function ShoppingApp() {
   }
 
   function deleteFromCartButtonClickHandler(product) {
-    const updatedProductsInCart = productsInCart;
     const updatedAllProductData = {
       ...allProductsData,
       [product.id-1]: {
@@ -90,8 +79,6 @@ function ShoppingApp() {
       }
     };
     const quantityOfProduct = product.quantity;
-    delete updatedProductsInCart[product.title];
-    setProductsInCart(updatedProductsInCart);
     setAllProductsData(updatedAllProductData);
     setNumberOfProductsInCart(() => numberOfProductsInCart - quantityOfProduct);
   }
