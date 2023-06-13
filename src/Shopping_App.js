@@ -83,7 +83,7 @@ function ShoppingApp() {
     setNumberOfProductsInCart(() => numberOfProductsInCart - quantityOfProduct);
   }
 
-  function increaseItemQuanitytInCartClickHandler(product) {
+  function increaseItemQuantityInCartClickHandler(product) {
     console.log(`increase quantity ${product}`);
   }
 
@@ -102,7 +102,7 @@ function ShoppingApp() {
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
         <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} allProductsData = {allProductsData}/>} />
-        <Route path="/cart" element={<Cart deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} increaseItemQuanitytInCartClickHandler={increaseItemQuanitytInCartClickHandler} decreaseItemQuantityInCartClickHandler={decreaseItemQuantityInCartClickHandler} allProductsData={allProductsData}/>} />
+        <Route path="/cart" element={<Cart deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} increaseItemQuantityInCartClickHandler={increaseItemQuantityInCartClickHandler} decreaseItemQuantityInCartClickHandler={decreaseItemQuantityInCartClickHandler} allProductsData={allProductsData}/>} />
       </Routes>
     </BrowserRouter>
   );
