@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function FineTuneQuantity({ quantity, increaseItemQuanitytInCartClickHandler, decreaseItemQuantityInCartClickHandler }) {
+export default function FineTuneQuantity({ quantity, increaseItemQuantity, decreaseItemQuantity }) {
 
     return (
         <>
             <div className="quantity-tune">
-                <button type="button" onClick={decreaseItemQuantityInCartClickHandler}>-</button>
+                <button type="button" onClick={decreaseItemQuantity}>-</button>
                 <p>{quantity}</p>
-                <button type="button" onClick={increaseItemQuanitytInCartClickHandler}>+</button>
+                <button type="button" onClick={increaseItemQuantity}>+</button>
             </div>
         </>
     );

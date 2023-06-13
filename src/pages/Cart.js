@@ -12,7 +12,7 @@ const Cart = ({ allProductsData, deleteFromCartButtonClickHandler, increaseItemQ
                         <ProductInCartCard 
                             key={`${cartItemInfo.title}${cartItemInfo.id}`} 
                             deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} 
-                            increaseItemQuanitytInCartClickHandler={increaseItemQuantityInCartClickHandler} 
+                            increaseItemQuantityInCartClickHandler={increaseItemQuantityInCartClickHandler} 
                             decreaseItemQuantityInCartClickHandler={decreaseItemQuantityInCartClickHandler} 
                             productInfo={cartItemInfo}
                         />
