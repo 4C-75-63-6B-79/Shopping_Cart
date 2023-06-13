@@ -84,11 +84,27 @@ function ShoppingApp() {
   }
 
   function increaseItemQuantityInCartClickHandler(product) {
-    console.log(`increase quantity ${product}`);
+    const updatedAllProductData = {
+      ...allProductsData,
+      [product.id-1]: {
+        ...product,
+        "quantity": product.quantity === 10 ? 10 : Number(product.quantity) + 1
+      }
+    };
+    setAllProductsData(updatedAllProductData);
+    updateNumberOfItemsInCart(updatedAllProductData);
   }
 
   function decreaseItemQuantityInCartClickHandler(product) {
-    console.log(`decrease quantity ${product}`);
+    const updatedAllProductData = {
+      ...allProductsData,
+      [product.id-1]: {
+        ...product,
+        "quantity": product.quantity === 1 ? 1 : Number(product.quantity) - 1
+      }
+    };
+    setAllProductsData(updatedAllProductData);
+    updateNumberOfItemsInCart(updatedAllProductData);
   }
 
   return (
