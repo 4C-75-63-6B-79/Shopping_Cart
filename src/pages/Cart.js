@@ -1,7 +1,7 @@
 import React from "react";
 import ProductInCartCard from "../components/ProductInCartCard";
 
-const Cart = ({ allProductsData, deleteFromCartButtonClickHandler, increaseItemQuanitytInCartClickHandler, decreaseItemQuantityInCartClickHandler }) => {
+const Cart = ({ allProductsData, deleteFromCartButtonClickHandler, increaseItemQuantityInCartClickHandler, decreaseItemQuantityInCartClickHandler }) => {
     return (
         <>
             <h2>Cart</h2>
@@ -12,7 +12,7 @@ const Cart = ({ allProductsData, deleteFromCartButtonClickHandler, increaseItemQ
                         <ProductInCartCard 
                             key={`${cartItemInfo.title}${cartItemInfo.id}`} 
                             deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} 
-                            increaseItemQuanitytInCartClickHandler={increaseItemQuanitytInCartClickHandler} 
+                            increaseItemQuanitytInCartClickHandler={increaseItemQuantityInCartClickHandler} 
                             decreaseItemQuantityInCartClickHandler={decreaseItemQuantityInCartClickHandler} 
                             productInfo={cartItemInfo}
                         />
