@@ -1,10 +1,18 @@
 import React from "react";
 import FineTuneQuantity from "./FineTuneQuantity";
 
-export default function ProductInCartCard ({ productInfo, deleteFromCartButtonClickHandler, increaseItemQuanitytInCartClickHandler, decreaseItemQuantityInCartClickHandler }) {
+export default function ProductInCartCard ({ productInfo, deleteFromCartButtonClickHandler, increaseItemQuantityInCartClickHandler, decreaseItemQuantityInCartClickHandler }) {
 
     function deleteFromCartClicked(event) {
         deleteFromCartButtonClickHandler(productInfo);
+    }
+
+    function decreaseItemQuantity() {
+        decreaseItemQuantityInCartClickHandler(productInfo);
+    }
+
+    function increaseItemQuantity() {
+        increaseItemQuantityInCartClickHandler(productInfo);
     }
 
     return (
@@ -13,8 +21,8 @@ export default function ProductInCartCard ({ productInfo, deleteFromCartButtonCl
             {/* <p>Quantity: {productInfo.quantity}</p> */}
             <FineTuneQuantity 
                 quantity={productInfo.quantity}
-                increaseItemQuanitytInCartClickHandler={increaseItemQuanitytInCartClickHandler}
-                decreaseItemQuantityInCartClickHandler={decreaseItemQuantityInCartClickHandler}
+                increaseItemQuantity={increaseItemQuantity}
+                decreaseItemQuantity={decreaseItemQuantity}
             />
             <button type="button" onClick={deleteFromCartClicked}>Delete</button>
         </div>
