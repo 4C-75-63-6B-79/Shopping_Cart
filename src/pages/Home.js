@@ -7,7 +7,7 @@ const Home = ({ productData }) => {
         <>
             <h2>Home</h2>
             <h3>{productData.error ? productData.error : productData.title}</h3>
-            <img src={productData.image} alt={productData.title}/>
+            {productData.error ? null : <img src={productData.image} alt={productData.title}/>}
         </>        
     );
 };
