@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import ProductCard from "./ProductCard";
+import userEvent  from "@testing-library/user-event";
 
 // test("renders a div with className productCard", () => {
 
@@ -12,7 +13,7 @@ describe("product card component renders basic info about the product", () => {
     const mockAddToCartButtonClickHandler = jest.fn();
     const mockProductInfo = { "title": "Product", "price": 100 };
 
-    it("renders a div with claaName productCard", () => {    
+    it("renders a div with className productCard", () => {    
         render(<ProductCard productInfo={mockProductInfo} addToCartButtonClickHandler={mockAddToCartButtonClickHandler} />);
     
         const divWithClassNameProductCard = screen.getByTitle(mockProductInfo.title);
@@ -61,5 +62,30 @@ describe("product card component renders basic info about the product", () => {
         const options = screen.queryAllByRole("option");
         expect(options.length).toBe(10);
         expect(Array.from(options).every((option, index)=> Number(option.textContent) === index+1)).toBe(true);
+    });
+});
+
+describe("clicking add to cart button calls the function addToCartButtonClickHandler with object which has attribute quantity", () => {
+    const mockAddToCartButtonClickHandler = jest.fn();
+    const mockProductInfo = { "title": "Product", "price": 100 };
+
+    test("clicking add to cart button without selecting the quantity from the options add single product to cart", async() => {
+        render(<ProductCard productInfo={mockProductInfo} addToCartButtonClickHandler={mockAddToCartButtonClickHandler} />);
+
+        await userEvent.click(screen.getByText("add to cart"));
+        expect(mockAddToCartButtonClickHandler).toHaveBeenCalled();
+        expect(mockAddToCartButtonClickHandler).toHaveBeenCalledWith({ "price": 100, "quantity": 1, "title": "Product" });
+    });
+    
+    test("selecting a option from quality list and then clicking add to cart button adds that quanity to cart", async() => {
+        render(<ProductCard productInfo={mockProductInfo} addToCartButtonClickHandler={mockAddToCartButtonClickHandler} />);
+
+        for(let index = 0; index<10; index++) {
+            await userEvent.selectOptions(screen.getByRole("combobox"), [`${index+1}`]);
+            expect(screen.getByRole("option", { name: `${index+1}` }).selected).toBe(true);
+            await userEvent.click(screen.getByText("add to cart"));
+            expect(mockAddToCartButtonClickHandler).toHaveBeenCalled();
+            expect(mockAddToCartButtonClickHandler).toHaveBeenCalledWith({ "price": 100, "quantity": index+1, "title": "Product" });
+        };        
     });
 });
