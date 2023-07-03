@@ -6,7 +6,7 @@ export default function ProductCard({ productInfo, addToCartButtonClickHandler }
     const[quantity, setQuantity] = useState(productInfo.quantity || 1);
 
     function addToCartClicked(event) {
-        addToCartButtonClickHandler({ ...productInfo, quantity: quantity });
+        addToCartButtonClickHandler({ ...productInfo, quantity: Number(quantity) });
     }
 
     function onChangeHandlerForSelect(event) {
