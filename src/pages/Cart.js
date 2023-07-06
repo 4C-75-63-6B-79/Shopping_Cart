@@ -4,7 +4,10 @@ import ProductInCartCard from "../components/ProductInCartCard";
 const Cart = ({ allProductsData, deleteFromCartButtonClickHandler, increaseItemQuantityInCartClickHandler, decreaseItemQuantityInCartClickHandler }) => {
     return (
         <>
-            <h2>Cart</h2>
+            <div id={"heading-checkoutButton"}>
+                <h2>Cart</h2>
+                <button>Checkout</button>
+            </div>
             <div id="cartProductGrid">
                 {
                     Object.entries(allProductsData).some(([index, productInfo]) => productInfo["inCart"]) 
