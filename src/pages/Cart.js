@@ -6,7 +6,7 @@ const Cart = ({ allProductsData, deleteFromCartButtonClickHandler, increaseItemQ
         <>
             <div id={"heading-checkoutButton"}>
                 <h2>Cart</h2>
-                <button>Checkout</button>
+                <button id="checkout">Checkout</button>
             </div>
             <div id="cartProductGrid">
                 {
