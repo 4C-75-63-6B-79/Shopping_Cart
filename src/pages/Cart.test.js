@@ -24,6 +24,18 @@ describe("testing basic functionality of cart page", () => {
         expect(h2.textContent).toBe("Cart");
     });
 
+    test("renders a button with text content as checkout", () => {
+        render(<Cart allProductsData={mockAllProductInfo} 
+            deleteFromCartButtonClickHandler={mockDeleteFromCartButtonClickHandler} 
+            decreaseItemQuantityInCartClickHandler={mockDecreaseItemQuantityInCartClickHandler}
+            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}/>);
+
+        const checkOutButton = screen.queryByText("Checkout");
+
+        expect(checkOutButton).not.toBe(null);
+        expect(checkOutButton).toHaveAttribute("id");
+    });
+
 
     test("renders h3 with test no item in cart when cart is empty", () => {
         render(<Cart allProductsData={productNoInCart} 
