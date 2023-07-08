@@ -8,6 +8,7 @@ describe("testing basic functionality of cart page", () => {
     const productNoInCart = { 0: { id: 1, "title": "Product", "quantity": "0", "inCart": false } };
     const productInCart = { 0: { id: 1, "title": "Product1", "quantity": "4", "inCart": true },
                             1: { id: 2, "title": "Product2", "quantity": "3", "inCart": true } };
+    const mockTotalPrice = 0;
     const mockIncreaseItemQuantityInCartClickHandler = jest.fn();
     const mockDecreaseItemQuantityInCartClickHandler = jest.fn();
     const mockDeleteFromCartButtonClickHandler = jest.fn();
@@ -17,18 +18,33 @@ describe("testing basic functionality of cart page", () => {
         render(<Cart allProductsData={mockAllProductInfo} 
             deleteFromCartButtonClickHandler={mockDeleteFromCartButtonClickHandler} 
             decreaseItemQuantityInCartClickHandler={mockDecreaseItemQuantityInCartClickHandler}
-            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}/>);
+            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}
+            totalPrice={mockTotalPrice}/>);
 
         const h2 = screen.getByRole("heading", { level: 2 });
 
         expect(h2.textContent).toBe("Cart");
     });
 
+    test("render a h4 heading with textcontent TotalPrice: 0", () => {
+        render(<Cart allProductsData={mockAllProductInfo} 
+            deleteFromCartButtonClickHandler={mockDeleteFromCartButtonClickHandler} 
+            decreaseItemQuantityInCartClickHandler={mockDecreaseItemQuantityInCartClickHandler}
+            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}
+            totalPrice={mockTotalPrice}/>);
+
+        const h4 = screen.getByRole("heading", { level: 4 });
+
+        expect(h4).toBeInTheDocument();
+        expect(h4.textContent).toBe(`Total Price: ${mockTotalPrice}`);
+    });
+
     test("renders a button with text content as checkout", () => {
         render(<Cart allProductsData={mockAllProductInfo} 
             deleteFromCartButtonClickHandler={mockDeleteFromCartButtonClickHandler} 
             decreaseItemQuantityInCartClickHandler={mockDecreaseItemQuantityInCartClickHandler}
-            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}/>);
+            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}
+            totalPrice={mockTotalPrice}/>);
 
         const checkOutButton = screen.queryByText("Checkout");
 
@@ -41,7 +57,8 @@ describe("testing basic functionality of cart page", () => {
         render(<Cart allProductsData={productNoInCart} 
             deleteFromCartButtonClickHandler={mockDeleteFromCartButtonClickHandler} 
             decreaseItemQuantityInCartClickHandler={mockDecreaseItemQuantityInCartClickHandler}
-            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}/>);
+            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}
+            totalPrice={mockTotalPrice}/>);
 
         const h3 = screen.getByRole("heading", { level: 3 });
 
@@ -52,7 +69,8 @@ describe("testing basic functionality of cart page", () => {
         render(<Cart allProductsData={productInCart} 
             deleteFromCartButtonClickHandler={mockDeleteFromCartButtonClickHandler} 
             decreaseItemQuantityInCartClickHandler={mockDecreaseItemQuantityInCartClickHandler}
-            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}/>);
+            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}
+            totalPrice={mockTotalPrice}/>);
 
         const h3YourCartEmpty = screen.queryByText("Your cart is empty");
 
@@ -63,7 +81,8 @@ describe("testing basic functionality of cart page", () => {
         render(<Cart allProductsData={productInCart} 
             deleteFromCartButtonClickHandler={mockDeleteFromCartButtonClickHandler} 
             decreaseItemQuantityInCartClickHandler={mockDecreaseItemQuantityInCartClickHandler}
-            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}/>);
+            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}
+            totalPrice={mockTotalPrice}/>);
 
         const allH3 = screen.queryAllByRole("heading", { level: 3 });
 
