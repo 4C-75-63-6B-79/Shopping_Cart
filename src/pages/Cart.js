@@ -1,11 +1,12 @@
 import React from "react";
 import ProductInCartCard from "../components/ProductInCartCard";
 
-const Cart = ({ allProductsData, deleteFromCartButtonClickHandler, increaseItemQuantityInCartClickHandler, decreaseItemQuantityInCartClickHandler }) => {
+const Cart = ({ allProductsData, deleteFromCartButtonClickHandler, increaseItemQuantityInCartClickHandler, decreaseItemQuantityInCartClickHandler, totalPrice }) => {
     return (
         <>
-            <div id={"heading-checkoutButton"}>
-                <h2>Cart</h2>
+            <h2>Cart</h2>
+            <div id={"totalPrice-checkoutButton"}>
+                <h4>Total Price: {totalPrice || 0}</h4>
                 <button id="checkout">Checkout</button>
             </div>
             <div id="cartProductGrid">
