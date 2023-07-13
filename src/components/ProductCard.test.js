@@ -11,7 +11,7 @@ import userEvent  from "@testing-library/user-event";
 describe("product card component renders basic info about the product", () => {
 
     const mockAddToCartButtonClickHandler = jest.fn();
-    const mockProductInfo = { "title": "Product", "price": 100 };
+    const mockProductInfo = { "title": "Product", "price": 100, "image": "#" };
 
     it("renders a div with className productCard", () => {    
         render(<ProductCard productInfo={mockProductInfo} addToCartButtonClickHandler={mockAddToCartButtonClickHandler} />);
@@ -20,6 +20,15 @@ describe("product card component renders basic info about the product", () => {
     
         expect(divWithClassNameProductCard).toHaveClass("productCard");
     
+    });
+
+    it("renders a img with alt text as product title", () => {
+        render(<ProductCard productInfo={mockProductInfo} addToCartButtonClickHandler={mockAddToCartButtonClickHandler} />);
+
+        const img = screen.getByRole("img");
+
+        expect(img).toBeTruthy();
+        expect(img.alt).toBe(mockProductInfo.title);
     });
 
     it("renders h2 with product title", () => {
