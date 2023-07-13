@@ -6,9 +6,10 @@ import Cart from "./Cart";
 describe("testing basic functionality of cart page", () => {
     const mockAllProductInfo = { 0: { id: 1, "title": "Product", "quantity": "0", "inCart": false } };
     const productNoInCart = { 0: { id: 1, "title": "Product", "quantity": "0", "inCart": false } };
-    const productInCart = { 0: { id: 1, "title": "Product1", "quantity": "4", "inCart": true },
-                            1: { id: 2, "title": "Product2", "quantity": "3", "inCart": true } };
+    const productInCart = { 0: { id: 1, "title": "Product1", "quantity": "4", "inCart": true, "price": 10 },
+                            1: { id: 2, "title": "Product2", "quantity": "3", "inCart": true, "price": 255 } };
     const mockTotalPrice = 0;
+    const mockTotalPriceNotZero = Object.entries(productInCart).reduce((accumulator, [id, productInfo]) => Number(productInfo["incart"]) ? Number(productInfo["quantity"]) * Number(productInfo["price"]) + accumulator : accumulator + 0, 0);
     const mockIncreaseItemQuantityInCartClickHandler = jest.fn();
     const mockDecreaseItemQuantityInCartClickHandler = jest.fn();
     const mockDeleteFromCartButtonClickHandler = jest.fn();
@@ -90,5 +91,17 @@ describe("testing basic functionality of cart page", () => {
         for( let i=0; i<Object.entries(productInCart).length; i++){
             expect(allH3[i].textContent).toBe(`Product${i+1}`);
         }
+    });
+
+    test("renders appropriate price if there are products in cart", () => {
+        render(<Cart allProductsData={productInCart}
+            deleteFromCartButtonClickHandler={mockDeleteFromCartButtonClickHandler}
+            decreaseItemQuantityInCartClickHandler={mockDecreaseItemQuantityInCartClickHandler}
+            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler}
+            totalPrice={mockTotalPriceNotZero} />);
+
+        const h4 = screen.getByRole("heading", { level: 4 }); 
+        expect(h4).toBeInTheDocument();
+        expect(h4.textContent).toBe(`Total Price: ${mockTotalPrice}`);
     });
 });
