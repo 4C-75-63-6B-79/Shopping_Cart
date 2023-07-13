@@ -18,7 +18,7 @@ export default function ProductInCartCard ({ productInfo, deleteFromCartButtonCl
     return (
         <div className="cartProductCard">
             <h3>{productInfo.title}</h3>
-            {/* <p>Quantity: {productInfo.quantity}</p> */}
+            <img src={productInfo.image} alt={productInfo.title}/>
             <FineTuneQuantity 
                 quantity={productInfo.quantity}
                 increaseItemQuantity={increaseItemQuantity}
