@@ -16,6 +16,7 @@ function ShoppingApp() {
   const [homePageProductData, setHomePageProductData] = useState(initalInitOfHomePageProductData);
   const [allProductsData, setAllProductsData] = useState(initProductsData);
   const [numberOfProductsInCart, setNumberOfProductsInCart] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
  
   function initalInitOfHomePageProductData() {
     getProductData(getRandomNumberInRange()).then((data) => setHomePageProductData(data)).catch((error) => setHomePageProductData({ error: "Something went wrong try refreshing the page again." }));
@@ -61,6 +62,7 @@ function ShoppingApp() {
     }; 
     updateNumberOfItemsInCart(updatedAllProductData);
     setAllProductsData(updatedAllProductData);
+    updateTotalCartPrice(updatedAllProductData);
   }
 
   function updateNumberOfItemsInCart(updatedAllProductData) {
@@ -68,6 +70,10 @@ function ShoppingApp() {
       return Object.entries(updatedAllProductData).reduce((accumulator, [id, productInfo]) => Number(productInfo["quantity"]) + accumulator , 0);
     });
   }
+
+  function updateTotalCartPrice(updatedAllProductData) {
+    setTotalPrice(Object.entries(updatedAllProductData).reduce((accumulator, [id, productInfo]) => Number(productInfo["inCart"]) ? Number(productInfo["quantity"]) * Number(productInfo["price"]) + accumulator : accumulator + 0, 0)); 
+  } 
 
   function deleteFromCartButtonClickHandler(product) {
     const updatedAllProductData = {
@@ -81,6 +87,7 @@ function ShoppingApp() {
     const quantityOfProduct = product.quantity;
     setAllProductsData(updatedAllProductData);
     setNumberOfProductsInCart(() => numberOfProductsInCart - quantityOfProduct);
+    updateTotalCartPrice(updatedAllProductData);
   }
 
   function increaseItemQuantityInCartClickHandler(product) {
@@ -93,6 +100,7 @@ function ShoppingApp() {
     };
     setAllProductsData(updatedAllProductData);
     updateNumberOfItemsInCart(updatedAllProductData);
+    updateTotalCartPrice(updatedAllProductData);
   }
 
   function decreaseItemQuantityInCartClickHandler(product) {
@@ -105,6 +113,7 @@ function ShoppingApp() {
     };
     setAllProductsData(updatedAllProductData);
     updateNumberOfItemsInCart(updatedAllProductData);
+    updateTotalCartPrice(updatedAllProductData);
   }
 
   return (
@@ -118,7 +127,7 @@ function ShoppingApp() {
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
         <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} allProductsData = {allProductsData}/>} />
-        <Route path="/cart" element={<Cart deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} increaseItemQuantityInCartClickHandler={increaseItemQuantityInCartClickHandler} decreaseItemQuantityInCartClickHandler={decreaseItemQuantityInCartClickHandler} allProductsData={allProductsData}/>} />
+        <Route path="/cart" element={<Cart deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} increaseItemQuantityInCartClickHandler={increaseItemQuantityInCartClickHandler} decreaseItemQuantityInCartClickHandler={decreaseItemQuantityInCartClickHandler} allProductsData={allProductsData} totalPrice={totalPrice}/>} />
       </Routes>
     </BrowserRouter>
   );
