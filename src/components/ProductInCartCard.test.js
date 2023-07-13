@@ -5,7 +5,7 @@ import ProductInCartCard from "./ProductInCartCard";
 import userEvent  from "@testing-library/user-event";
 
 describe("Testing basic fucntionality of the componet Product In Cart Card", () => {
-    const mockProductInfo = { "title": "Product", "quantity": "4" };
+    const mockProductInfo = { "title": "Product", "quantity": "4" , "image": "#" };
     const mockIncreaseItemQuantityInCartClickHandler = jest.fn();
     const mockDecreaseItemQuantityInCartClickHandler = jest.fn();
     const mockDeleteFromCartButtonClickHandler = jest.fn();
@@ -19,6 +19,18 @@ describe("Testing basic fucntionality of the componet Product In Cart Card", () 
         const h3 = screen.getByRole("heading", { "level": 3 });
 
         expect(h3.textContent).toBe(mockProductInfo["title"]);
+    });
+
+    test("render image of the product", () =>  {
+        render(<ProductInCartCard productInfo={mockProductInfo} 
+            increaseItemQuantityInCartClickHandler={mockIncreaseItemQuantityInCartClickHandler} 
+            decreaseItemQuantityInCartClickHandler={mockDecreaseItemQuantityInCartClickHandler} 
+            deleteFromCartButtonClickHandler={mockDeleteFromCartButtonClickHandler}/>);
+
+        const img = screen.getByRole("img");
+
+        expect(img).toBeTruthy();
+        expect(img.alt).toBe(mockProductInfo.title);
     });
 
     test("renders a button with text delete", () => {
