@@ -16,6 +16,7 @@ export default function ProductCard({ productInfo, addToCartButtonClickHandler }
     return (
         <>
             <div title={productInfo.title} className="productCard">
+                <img src={productInfo.image} alt={productInfo.title}/>
                 <h2>{productInfo.title}</h2>
                 <h3>{productInfo.price}</h3>
                 <label htmlFor="quantity-select">Quantity</label>
