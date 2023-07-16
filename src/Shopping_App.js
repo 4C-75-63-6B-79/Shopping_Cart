@@ -34,7 +34,7 @@ function ShoppingApp() {
       });
       setAllProductsData(preProcessedData);
     }).catch((error) =>setAllProductsData({ error: "Something went wrong try refreshing the page again." }));
-    return "";
+    return { "loading": true };
   }
 
   function onHomePageLinkClicked() {
