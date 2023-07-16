@@ -20,7 +20,7 @@ function ShoppingApp() {
  
   function initalInitOfHomePageProductData() {
     getProductData(getRandomNumberInRange()).then((data) => setHomePageProductData(data)).catch((error) => setHomePageProductData({ error: "Something went wrong try refreshing the page again." }));
-    return "";
+    return { "loading": true };
   }
 
   function initProductsData() {
