@@ -2,14 +2,14 @@ import React from "react";
 
 import ProductCard from "../components/ProductCard";
 
-const Products = ({ allProductsData, addToCartButtonClickHandler, categoryOnChangeHandler }) => {
+const Products = ({ allProductsData, addToCartButtonClickHandler, currentCategory, categoryOnChangeHandler }) => {
 
     return (
         <>
             <div id="productsPageNavbar">
                 <h2>Products</h2>
                 <label htmlFor="category-select">Sort By Category: </label>
-                <select name="category" id="category-select" onChange={(event) => categoryOnChangeHandler(event.target.value)} default="all">
+                <select name="category" id="category-select" onChange={(event) => categoryOnChangeHandler(event.target.value)} value={currentCategory}>
                     <option value="all">All</option>
                     <option value="men's clothing">Men's Clothing</option>
                     <option value="women's clothing">Women's Clothing</option>
