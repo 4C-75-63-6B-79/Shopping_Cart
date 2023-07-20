@@ -11,10 +11,10 @@ const Products = ({ allProductsData, addToCartButtonClickHandler, categoryOnChan
                 <label htmlFor="category-select">Sort By Category: </label>
                 <select name="category" id="category-select" onChange={(event) => categoryOnChangeHandler(event.target.value)} default="all">
                     <option value="all">All</option>
-                    <option value="mensClothing">Men's Clothing</option>
-                    <option value="womensClothing">Women's Clothing</option>
-                    <option value="jewellery">Jewellery</option>
-                    <option value="Electronics">Electronics</option>
+                    <option value="men's clothing">Men's Clothing</option>
+                    <option value="women's clothing">Women's Clothing</option>
+                    <option value="jewelery">Jewellery</option>
+                    <option value="electronics">Electronics</option>
                 </select>
             </div>
             <div id="productGrid">
