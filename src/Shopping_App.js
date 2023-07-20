@@ -15,6 +15,7 @@ function ShoppingApp() {
 
   const [homePageProductData, setHomePageProductData] = useState(initalInitOfHomePageProductData);
   const [allProductsData, setAllProductsData] = useState(initProductsData);
+  const [categoryProductData, setCategoryProductData] = useState(false);
   const [numberOfProductsInCart, setNumberOfProductsInCart] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
  
@@ -116,6 +117,20 @@ function ShoppingApp() {
     updateTotalCartPrice(updatedAllProductData);
   }
 
+  function sortByProductCategoryButtonClicked(category) {
+    updateCategoryProductData(allProductsData, category);
+  }
+
+  function updateCategoryProductData(productsData, category) {
+    if(category === "all") {
+      setCategoryProductData(false);
+      return ;
+    }
+    console.log(category);
+    const updateCategoryProductData = productsData.filter((productData) => productData["category"] === category);
+    setCategoryProductData(updateCategoryProductData);
+  }
+
   return (
     <BrowserRouter>
       <div className="shopping-app">
@@ -126,7 +141,7 @@ function ShoppingApp() {
       </div>
       <Routes>
         <Route path="/" exact element={<Home productData ={homePageProductData}/>} />
-        <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} allProductsData = {allProductsData}/>} />
+        <Route path="/products" element={<Products addToCartButtonClickHandler={addToCartButtonClickHandler} allProductsData = {categoryProductData || allProductsData} categoryOnChangeHandler={sortByProductCategoryButtonClicked}/>} />
         <Route path="/cart" element={<Cart deleteFromCartButtonClickHandler={deleteFromCartButtonClickHandler} increaseItemQuantityInCartClickHandler={increaseItemQuantityInCartClickHandler} decreaseItemQuantityInCartClickHandler={decreaseItemQuantityInCartClickHandler} allProductsData={allProductsData} totalPrice={totalPrice}/>} />
       </Routes>
     </BrowserRouter>
