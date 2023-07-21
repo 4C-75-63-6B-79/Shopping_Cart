@@ -120,7 +120,7 @@ function ShoppingApp() {
 
   function sortByProductCategoryButtonClicked(category) {
     setCurrentProductCategory(category);
-    // updateCategoryProductData(allProductsData, category);
+    updateCategoryProductData(allProductsData, category);
   }
 
   function updateCategoryProductData(productsData, category=currentProductCategory) {
@@ -128,8 +128,15 @@ function ShoppingApp() {
       setCategoryProductData(false);
       return ;
     }
-    const updateCategoryProductData = productsData.filter((productData) => productData["category"] === category);
-    setCategoryProductData(updateCategoryProductData);
+    console.log(productsData);
+    const updateCategoryProductData = Object.entries(productsData).reduce((accumulator, [key, productData]) => {
+      if(productData["category"] === category) {
+        return [ ...accumulator, [ key, productData ]];
+      }
+      return [...accumulator];
+    }, []); 
+    console.log(updateCategoryProductData);
+    setCategoryProductData(Object.fromEntries(updateCategoryProductData));
   }
 
   return (
