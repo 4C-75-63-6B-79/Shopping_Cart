@@ -27,14 +27,14 @@ function ShoppingApp() {
 
   function initProductsData() {
     getAllProductsData().then((data) => {
-      const preProcessedData = data.map((element) => {
-        return {
+      const preProcessedData = data.map((element, index) => {
+        return [ index, {
           ...element,
           "inCart": false,
           "quantity": 0
-        };
+        } ];
       });
-      setAllProductsData(preProcessedData);
+      setAllProductsData(Object.fromEntries(preProcessedData));
     }).catch((error) =>setAllProductsData({ error: "Something went wrong try refreshing the page again." }));
     return { "loading": true };
   }
@@ -120,7 +120,7 @@ function ShoppingApp() {
 
   function sortByProductCategoryButtonClicked(category) {
     setCurrentProductCategory(category);
-    updateCategoryProductData(allProductsData, category);
+    // updateCategoryProductData(allProductsData, category);
   }
 
   function updateCategoryProductData(productsData, category=currentProductCategory) {
