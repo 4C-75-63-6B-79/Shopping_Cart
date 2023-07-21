@@ -65,6 +65,7 @@ function ShoppingApp() {
     updateNumberOfItemsInCart(updatedAllProductData);
     setAllProductsData(updatedAllProductData);
     updateTotalCartPrice(updatedAllProductData);
+    updateCategoryProductData(updatedAllProductData);
   }
 
   function updateNumberOfItemsInCart(updatedAllProductData) {
@@ -90,6 +91,7 @@ function ShoppingApp() {
     setAllProductsData(updatedAllProductData);
     setNumberOfProductsInCart(() => numberOfProductsInCart - quantityOfProduct);
     updateTotalCartPrice(updatedAllProductData);
+    updateCategoryProductData(updatedAllProductData);
   }
 
   function increaseItemQuantityInCartClickHandler(product) {
@@ -103,6 +105,7 @@ function ShoppingApp() {
     setAllProductsData(updatedAllProductData);
     updateNumberOfItemsInCart(updatedAllProductData);
     updateTotalCartPrice(updatedAllProductData);
+    updateCategoryProductData(updatedAllProductData);
   }
 
   function decreaseItemQuantityInCartClickHandler(product) {
@@ -116,6 +119,7 @@ function ShoppingApp() {
     setAllProductsData(updatedAllProductData);
     updateNumberOfItemsInCart(updatedAllProductData);
     updateTotalCartPrice(updatedAllProductData);
+    updateCategoryProductData(updatedAllProductData);
   }
 
   function sortByProductCategoryButtonClicked(category) {
@@ -128,14 +132,12 @@ function ShoppingApp() {
       setCategoryProductData(false);
       return ;
     }
-    console.log(productsData);
     const updateCategoryProductData = Object.entries(productsData).reduce((accumulator, [key, productData]) => {
       if(productData["category"] === category) {
         return [ ...accumulator, [ key, productData ]];
       }
       return [...accumulator];
     }, []); 
-    console.log(updateCategoryProductData);
     setCategoryProductData(Object.fromEntries(updateCategoryProductData));
   }
 
