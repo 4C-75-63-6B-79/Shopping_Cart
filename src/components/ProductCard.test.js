@@ -11,7 +11,7 @@ import userEvent  from "@testing-library/user-event";
 describe("product card component renders basic info about the product", () => {
 
     const mockAddToCartButtonClickHandler = jest.fn();
-    const mockProductInfo = { "title": "Product", "price": 100, "image": "#" };
+    const mockProductInfo = { "title": "Product", "price": 100, "image": "#" , "description": "This is decription" };
 
     it("renders a div with className productCard", () => {    
         render(<ProductCard productInfo={mockProductInfo} addToCartButtonClickHandler={mockAddToCartButtonClickHandler} />);
@@ -65,6 +65,16 @@ describe("product card component renders basic info about the product", () => {
         expect(selectQuantity.name).toMatch("quantity");
     });
 
+    
+    test("render the description of the product in p element", () => {
+        render(<ProductCard productInfo={mockProductInfo} addToCartButtonClickHandler={mockAddToCartButtonClickHandler} />);
+
+        const description = screen.queryByText(mockProductInfo.description);
+        expect(description).toBeInTheDocument();
+        expect(description.textContent).toBe(mockProductInfo.description);
+    });
+    
+
     it("renders 10 options starting from 1 to 10", () => {
         render(<ProductCard productInfo={mockProductInfo} addToCartButtonClickHandler={mockAddToCartButtonClickHandler} />);
 
@@ -85,7 +95,7 @@ describe("clicking add to cart button calls the function addToCartButtonClickHan
         expect(mockAddToCartButtonClickHandler).toHaveBeenCalled();
         expect(mockAddToCartButtonClickHandler).toHaveBeenCalledWith({ "price": 100, "quantity": 1, "title": "Product" });
     });
-    
+
     test("selecting a option from quality list and then clicking add to cart button adds that quanity to cart", async() => {
         render(<ProductCard productInfo={mockProductInfo} addToCartButtonClickHandler={mockAddToCartButtonClickHandler} />);
 
