@@ -25,6 +25,9 @@ export default function ProductCard({ productInfo, addToCartButtonClickHandler }
                         Array.from({ length: 10 }, () => null).map(( element, index ) => <option key={"quantityOptions"+index} value={index + 1} >{index + 1}</option>)                        
                     }
                 </select>
+                <p>
+                    {productInfo.description}
+                </p>
                 <button type="button" onClick={addToCartClicked}>add to cart</button>
             </div>
         </>
