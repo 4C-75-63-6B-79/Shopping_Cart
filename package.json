@@ -32,6 +32,7 @@
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
     "eslint-config-prettier": "^8.8.0",
+    "netlify-cli": "^15.9.1",
     "prettier": "2.8.8"
   }
 }
