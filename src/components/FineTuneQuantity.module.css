@@ -1,0 +1,30 @@
+.quantityTune {
+    border: 1px solid black;
+    border-radius: 0.3rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.qtyP {
+    padding: 0.1rem 0.15rem;
+}
+
+.addBtn,
+.minusBtn {
+    border: none;
+    border-radius: 0.25rem;
+    background-color: white;
+    padding: 0.25rem 0.4rem;
+    font-size: 1.15rem;
+}
+
+.addBtn:hover {
+    background-color: #9ede96;
+}
+
+.minusBtn:hover {
+    background-color: #e79a9a;
+}
+
