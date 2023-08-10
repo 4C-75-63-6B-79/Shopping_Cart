@@ -45,13 +45,13 @@ function ShoppingApp() {
     }
   }
 
-  function onProductsPageLinkClicked() {
-    console.log("products page link clicked");
-  }
+  // function onProductsPageLinkClicked() {
+  //   console.log("products page link clicked");
+  // }
 
-  function onCartPageLinkClicked() {
-    console.log("cart page link clicked");
-  }
+  // function onCartPageLinkClicked() {
+  //   console.log("cart page link clicked");
+  // }
 
   function addToCartButtonClickHandler(product) {
     const updatedAllProductData = {
