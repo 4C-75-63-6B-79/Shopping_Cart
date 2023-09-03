@@ -2,11 +2,13 @@ import React from "react";
 
 import ProductCard from "../components/ProductCard";
 
+import ProductsCss from "./Products.module.css";
+
 const Products = ({ allProductsData, addToCartButtonClickHandler, currentCategory, categoryOnChangeHandler }) => {
 
     return (
         <>
-            <div id="productsPageNavbar">
+            <div id={ProductsCss.productPageNavbar}>
                 <h2>Products</h2>
                 <label htmlFor="category-select">Sort By Category: </label>
                 <select name="category" id="category-select" onChange={(event) => categoryOnChangeHandler(event.target.value)} value={currentCategory}>

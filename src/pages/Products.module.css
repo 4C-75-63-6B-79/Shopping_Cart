@@ -1,0 +1,21 @@
+#productPageNavbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+h2 {
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 1;
+    justify-self: center;
+}
+
+label {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+}
+
+select {
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+}
