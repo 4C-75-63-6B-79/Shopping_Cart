@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
+import ProductCardCss from "./ProductCard.module.css";
+
 export default function ProductCard({ productInfo, addToCartButtonClickHandler }) {
 
     const[quantity, setQuantity] = useState(productInfo.quantity || 1);
@@ -15,9 +17,9 @@ export default function ProductCard({ productInfo, addToCartButtonClickHandler }
 
     return (
         <>
-            <div title={productInfo.title} className="productCard">
-                <img src={productInfo.image} alt={productInfo.title}/>
+            <div title={productInfo.title} className={ProductCardCss.productCard}>
                 <h2>{productInfo.title}</h2>
+                <img className={ProductCardCss.productImage} src={productInfo.image} alt={productInfo.title}/>
                 <h3>{productInfo.price}</h3>
                 <label htmlFor="quantity-select">Quantity</label>
                 <select name="quantity" id="quantity-select" onChange={onChangeHandlerForSelect} value={quantity}>
