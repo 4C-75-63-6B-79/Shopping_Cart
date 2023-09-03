@@ -9,13 +9,13 @@
     margin: 0 5% 0 5%;
 }
 
-h2 {
+#productPageNavbarHeading {
     grid-column: 2 / span 2;
     grid-row: 1 / span 1;
     justify-self: center;
 }
 
-label {
+#productCategoryLabel {
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
     justify-self: end;
@@ -23,7 +23,7 @@ label {
     font-size: 1.05rem;
 }
 
-select {
+#productCategorySelect {
     grid-column: 3 / span 1;
     grid-row: 2 / span 1;
     justify-self: start;
@@ -32,4 +32,11 @@ select {
     align-items: center;
     font-size: 1.05rem;
     border-radius: 5px;
+}
+
+#productsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 1%;
+    gap: 1%;
 }
