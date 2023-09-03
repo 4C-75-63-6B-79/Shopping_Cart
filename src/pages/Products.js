@@ -9,9 +9,9 @@ const Products = ({ allProductsData, addToCartButtonClickHandler, currentCategor
     return (
         <>
             <div id={ProductsCss.productPageNavbar}>
-                <h2>Products</h2>
-                <label htmlFor="category-select">Sort By Category: </label>
-                <select name="category" id="category-select" onChange={(event) => categoryOnChangeHandler(event.target.value)} value={currentCategory}>
+                <h2 id={ProductsCss.productPageNavbarHeading}>Products</h2>
+                <label id={ProductsCss.productCategoryLabel} htmlFor="category-select">Sort By Category: </label>
+                <select name="category" id={ProductsCss.productCategorySelect} onChange={(event) => categoryOnChangeHandler(event.target.value)} value={currentCategory}>
                     <option value="all">All</option>
                     <option value="men's clothing">Men's Clothing</option>
                     <option value="women's clothing">Women's Clothing</option>
@@ -19,7 +19,7 @@ const Products = ({ allProductsData, addToCartButtonClickHandler, currentCategor
                     <option value="electronics">Electronics</option>
                 </select>
             </div>
-            <div id="productGrid">
+            <div id={ProductsCss.productsGrid}>
                 {
                     allProductsData["loading"] === true ? "Loading..." : allProductsData.error ? <h3>{allProductsData.error}</h3> :
                     Object.entries(allProductsData).map(([index, product]) => {
