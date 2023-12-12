@@ -18,15 +18,18 @@ export default function ProductCard({ productInfo, addToCartButtonClickHandler }
     return (
         <>
             <div title={productInfo.title} className={ProductCardCss.productCard}>
-                <h2>{productInfo.title}</h2>
+                <h2 className={ProductCardCss.productCardTitle}>{productInfo.title}</h2>
                 <img className={ProductCardCss.productImage} src={productInfo.image} alt={productInfo.title}/>
-                <h3>{productInfo.price}</h3>
-                <label htmlFor="quantity-select">Quantity</label>
-                <select name="quantity" id="quantity-select" onChange={onChangeHandlerForSelect} value={quantity}>
-                    {
-                        Array.from({ length: 10 }, () => null).map(( element, index ) => <option key={"quantityOptions"+index} value={index + 1} >{index + 1}</option>)                        
-                    }
-                </select>
+                <h3>$ {productInfo.price}</h3>
+                <label htmlFor="quantity-select" className={ProductCardCss.quantityLabel}>
+                    Quantity 
+                    <select className={ProductCardCss.quantitySelect} name="quantity" id="quantity-select" onChange={onChangeHandlerForSelect} value={quantity}>
+                        {
+                            Array.from({ length: 10 }, () => null).map(( element, index ) => <option key={"quantityOptions"+index} value={index + 1} >{index + 1}</option>)                        
+                        }
+                    </select>
+                </label>
+                
                 <p>
                     {productInfo.description}
                 </p>
